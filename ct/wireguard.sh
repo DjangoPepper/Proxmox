@@ -82,6 +82,7 @@ pip install flask &>/dev/null
 pip install ifcfg &>/dev/null
 pip install flask_qrcode &>/dev/null
 pip install icmplib &>/dev/null
+pip install psutil &>/dev/null
 msg_ok "Installed Python3-pip"
 
 msg_info "Installing WGDashboard"
