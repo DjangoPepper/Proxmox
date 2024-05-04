@@ -12,7 +12,7 @@ cat <<"EOF"
 | |     / (_)_______  / ____/_  ______ __________/ /
 | | /| / / / ___/ _ \/ / __/ / / / __ `/ ___/ __  / 
 | |/ |/ / / /  /  __/ /_/ / /_/ / /_/ / /  / /_/ /  
-|__/|__/_/_/   \___/\____/\__,_/\__,_/_/   \__,_/   
+|__/|__/_/_/   \___/\____/\__,_/\__,_/_/   \__,_2   
                                                     
 EOF
 }
@@ -23,7 +23,7 @@ var_disk="2"
 var_cpu="1"
 var_ram="512"
 var_os="debian"
-var_version="11"
+var_version="12"
 variables
 color
 catch_errors
@@ -47,8 +47,8 @@ function default_settings() {
   NS=""
   MAC=""
   VLAN=""
-  SSH="no"
-  VERB="no"
+  SSH="yes"
+  VERB="yes"
   echo_default
 }
 
@@ -90,8 +90,8 @@ WGDREL=$(curl -s https://api.github.com/repos/donaldzou/WGDashboard/releases/lat
   grep "tag_name" |
   awk '{print substr($2, 2, length($2)-3) }')
 
-git clone -b ${WGDREL} https://github.com/donaldzou/WGDashboard.git /etc/wgdashboard &>/dev/null
-cd /etc/wgdashboard/src
+git clone -b ${WGDREL} https://github.com/donaldzou/WGDashboard.git /etc/WGDashboard &>/dev/null
+cd /etc/WGDashboard/src
 sudo chmod u+x wgd.sh
 sudo ./wgd.sh install &>/dev/null
 sudo chmod -R 755 /etc/wireguard
@@ -103,8 +103,8 @@ echo "[Unit]
 After=systemd-networkd.service
 
 [Service]
-WorkingDirectory=/etc/wgdashboard/src
-ExecStart=/usr/bin/python3 /etc/wgdashboard/src/dashboard.py
+WorkingDirectory=/etc/WGDashboard/src
+ExecStart=/usr/bin/python3 /etc/WGDashboard/src/dashboard.py
 Restart=always
 
 
